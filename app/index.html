@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Senja Pelabuhan Leonida — Sunset Cover Maker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <h1>Senja Pelabuhan <span>Leonida</span></h1>
+    <p>Sunset Cover Maker — ubah fotomu jadi sampul poster multi-panel bergaya senja pelabuhan, langsung di browser, tanpa unggah.</p>
+  </div>
+  <div class="top-actions">
+    <button id="surpriseBtn" type="button" class="accent">🎲 Surprise me</button>
+    <button id="undoBtn" type="button">↩ Undo</button>
+    <button id="redoBtn" type="button">↪ Redo</button>
+  </div>
+</header>
+
+<main class="layout">
+  <aside class="col library-col">
+    <h2>Perpustakaan Foto</h2>
+    <div id="library" class="library"></div>
+    <label class="upload">
+      <input id="uploadInput" type="file" accept="image/*" multiple>
+      ＋ Unggah foto kamu (dibaca lokal, tidak dikirim ke mana pun)
+    </label>
+    <button id="fillAllBtn" type="button" class="wide">Isi semua panel dari perpustakaan</button>
+    <p class="hint">Klik sebuah foto untuk memasangnya ke panel terpilih. Deteksi wajah sederhana menjaga wajah tetap di dalam bingkai saat crop otomatis (bisa dimatikan di panel kanan).</p>
+  </aside>
+
+  <section class="col stage-col">
+    <div class="stage-wrap">
+      <canvas id="preview" width="880" height="880"></canvas>
+    </div>
+    <div id="panelChips" class="panel-chips"></div>
+    <p id="status" class="status">Memuat foto sampel…</p>
+    <div class="exports-row">
+      <span>Ekspor:</span>
+      <div id="exports" class="exports"></div>
+    </div>
+  </section>
+
+  <aside class="col controls-col">
+    <h2>Layout Panel</h2>
+    <div id="layouts" class="chips"></div>
+    <h2>Grade Warna</h2>
+    <div id="grades" class="chips"></div>
+    <h2>Lettering</h2>
+    <label>Judul sampul <input id="titleInput" type="text" maxlength="42"></label>
+    <label>Subjudul <input id="subtitleInput" type="text" maxlength="60"></label>
+    <label>Lencana <input id="badgeInput" type="text" maxlength="30"></label>
+    <h2>Panel Terpilih</h2>
+    <p id="panelPhotoName" class="hint"></p>
+    <label>Caption panel <input id="captionInput" type="text" maxlength="34"></label>
+    <label>Zoom <input id="zoomRange" type="range" min="100" max="260" value="100"></label>
+    <label>Geser X <input id="panXRange" type="range" min="-40" max="40" value="0"></label>
+    <label>Geser Y <input id="panYRange" type="range" min="-40" max="40" value="0"></label>
+    <label class="check"><input id="faceToggle" type="checkbox" checked> Face-aware auto-fill (jaga wajah)</label>
+    <label>Film grain <input id="grainRange" type="range" min="0" max="100" value="100"></label>
+    <p class="hint">Klik panel pada pratinjau untuk memilihnya. Ctrl+Z / Ctrl+Shift+Z untuk undo / redo. Tiga langkah: pilih foto → atur panel &amp; caption → ekspor PNG.</p>
+  </aside>
+</main>
+
+<footer class="foot">Karya orisinal studio ini — tanpa logo, artwork, atau font Rockstar. Semua proses berjalan offline di perangkatmu.</footer>
+
+<script type="module" src="src/main.js"></script>
+<script type="module" src="src/shots.js"></script>
+</body>
+</html>
